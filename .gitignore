@@ -1,0 +1,16 @@
+/hg.hgignore
+/nbproject
+assets/*
+!assets/.yii
+protected/runtime/*
+!protected/runtime/.yii
+protected/data/*.db
+/protected/config/db.php
+web.config
+protected/uploads/*
+!protected/uploads/.yii
+protected/commands/shell/*
+!protected/commands/shell/.yii
+vendor/*
+hg.hgkeep
+git.gitkeep
