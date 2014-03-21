@@ -16,13 +16,13 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$record=User::model()->findOne(array('username' => $this->username));
+		$record=Usuario::model()->findByAttributes(array('username' => $this->username));
 		if ($record === null) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		} else if ($record->password !== crypt($this->password, $record->password)) { // check crypted password against the one provided
+		} else if ($record->senha !== crypt($this->password, $senha->password)) { // check crypted password against the one provided
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		} else {
-			$this->_id = $record->_id;
+			$this->_id = $record->id;
 			$this->errorCode = self::ERROR_NONE;
 		}
 		return !$this->errorCode;
