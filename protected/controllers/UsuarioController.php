@@ -1,44 +1,50 @@
 <?php
 
-class UsuarioController extends GxController {
+class UsuarioController extends GxController 
+{
 
-public function filters() {
+    public function filters() 
+    {
+        return array(
+            'accessControl', 
+        );
+    }
+
+public function accessRules() 
+{
 	return array(
-			'accessControl', 
-			);
+        array('allow',
+            'actions'=>array('index','view'),
+            'users'=>array('*'),
+        ),
+        array('allow', 
+            'actions'=>array('minicreate', 'create','update'),
+            'users'=>array('@'),
+        ),
+        array('allow', 
+            'actions'=>array('admin','delete'),
+            'users'=>array('admin'),
+        ),
+        array('deny', 
+            'users'=>array('*'),
+        ),
+    );
 }
 
-public function accessRules() {
-	return array(
-			array('allow',
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-				),
-			array('allow', 
-				'actions'=>array('minicreate', 'create','update'),
-				'users'=>array('@'),
-				),
-			array('allow', 
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-				),
-			array('deny', 
-				'users'=>array('*'),
-				),
-			);
-}
-
-	public function actionView($id) {
-		$this->render('view', array(
+	public function actionView($id) 
+    {
+        $this->render('view', array(
 			'model' => $this->loadModel($id, 'Usuario'),
 		));
 	}
 
-	public function actionCreate() {
+	public function actionCreate() 
+    {
 		$model = new Usuario;
 
 
-		if (isset($_POST['Usuario'])) {
+		if (isset($_POST['Usuario'])) 
+        {
 			$model->setAttributes($_POST['Usuario']);
 
 			if ($model->save()) {
@@ -52,7 +58,8 @@ public function accessRules() {
 		$this->render('create', array( 'model' => $model));
 	}
 
-	public function actionUpdate($id) {
+	public function actionUpdate($id) 
+    {
 		$model = $this->loadModel($id, 'Usuario');
 
 
@@ -65,28 +72,33 @@ public function accessRules() {
 		}
 
 		$this->render('update', array(
-				'model' => $model,
-				));
+            'model' => $model,
+        ));
 	}
 
-	public function actionDelete($id) {
-		if (Yii::app()->getRequest()->getIsPostRequest()) {
+	public function actionDelete($id) 
+    {
+		if (Yii::app()->getRequest()->getIsPostRequest()) 
+        {
 			$this->loadModel($id, 'Usuario')->delete();
 
 			if (!Yii::app()->getRequest()->getIsAjaxRequest())
 				$this->redirect(array('admin'));
-		} else
+		} 
+        else
 			throw new CHttpException(400, Yii::t('app', 'Your request is invalid.'));
 	}
 
-	public function actionIndex() {
+	public function actionIndex() 
+    {
 		$dataProvider = new CActiveDataProvider('Usuario');
 		$this->render('index', array(
 			'dataProvider' => $dataProvider,
 		));
 	}
 
-	public function actionAdmin() {
+	public function actionAdmin() 
+    {
 		$model = new Usuario('search');
 		$model->unsetAttributes();
 
