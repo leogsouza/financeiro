@@ -26,25 +26,31 @@
  * @property Usuario $usuario
  * @property Categoria $categoria
  */
-abstract class BaseLancamento extends GxActiveRecord {
+abstract class BaseLancamento extends GxActiveRecord 
+{
 
-	public static function model($className=__CLASS__) {
+	public static function model($className=__CLASS__) 
+    {
 		return parent::model($className);
 	}
 
-	public function tableName() {
+	public function tableName() 
+    {
 		return 'tbl_lancamento';
 	}
 
-	public static function label($n = 1) {
+	public static function label($n = 1) 
+    {
 		return Yii::t('app', 'Lancamento|Lancamentos', $n);
 	}
 
-	public static function representingColumn() {
+	public static function representingColumn() 
+    {
 		return 'descricao';
 	}
 
-	public function rules() {
+	public function rules() 
+    {
 		return array(
 			array('descricao, usuario_id', 'required'),
 			array('categoria_id, tipo, status, usuario_id', 'numerical', 'integerOnly'=>true),
@@ -57,19 +63,22 @@ abstract class BaseLancamento extends GxActiveRecord {
 		);
 	}
 
-	public function relations() {
+	public function relations() 
+    {
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_id'),
 			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categoria_id'),
 		);
 	}
 
-	public function pivotModels() {
+	public function pivotModels() 
+    {
 		return array(
 		);
 	}
 
-	public function attributeLabels() {
+	public function attributeLabels() 
+    {
 		return array(
 			'id' => Yii::t('app', 'ID'),
 			'descricao' => Yii::t('app', 'Descricao'),
@@ -89,7 +98,8 @@ abstract class BaseLancamento extends GxActiveRecord {
 		);
 	}
 
-	public function search() {
+	public function search() 
+    {
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);

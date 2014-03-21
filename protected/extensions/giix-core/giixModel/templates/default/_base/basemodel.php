@@ -53,21 +53,26 @@
 	?>
 <?php endforeach; ?>
  */
-abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->baseClass; ?> {
+abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->baseClass; ?> 
+{
 
-	public static function model($className=__CLASS__) {
+	public static function model($className=__CLASS__) 
+    {
 		return parent::model($className);
 	}
 
-	public function tableName() {
+	public function tableName() 
+    {
 		return '<?php echo $tableName; ?>';
 	}
 
-	public static function label($n = 1) {
+	public static function label($n = 1) 
+    {
 		return Yii::t('app', '<?php echo $modelClass; ?>|<?php echo $this->pluralize($modelClass); ?>', $n);
 	}
 
-	public static function representingColumn() {
+	public static function representingColumn() 
+    {
 <?php if (is_array($representingColumn)): ?>
 		return array(
 <?php foreach($representingColumn as $representingColumn_item): ?>
@@ -79,7 +84,8 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 <?php endif; ?>
 	}
 
-	public function rules() {
+	public function rules() 
+    {
 		return array(
 <?php foreach($rules as $rule): ?>
 			<?php echo $rule.",\n"; ?>
@@ -88,7 +94,8 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 		);
 	}
 
-	public function relations() {
+	public function relations() 
+    {
 		return array(
 <?php foreach($relations as $name=>$relation): ?>
 			<?php echo "'{$name}' => {$relation},\n"; ?>
@@ -96,7 +103,8 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 		);
 	}
 
-	public function pivotModels() {
+	public function pivotModels() 
+    {
 		return array(
 <?php foreach($pivotModels as $relationName=>$pivotModel): ?>
 			<?php echo "'{$relationName}' => '{$pivotModel}',\n"; ?>
@@ -104,7 +112,8 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 		);
 	}
 
-	public function attributeLabels() {
+	public function attributeLabels() 
+    {
 		return array(
 <?php foreach($labels as $name=>$label): ?>
 <?php if($label === null): ?>
@@ -116,7 +125,8 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 		);
 	}
 
-	public function search() {
+	public function search() 
+    {
 		$criteria = new CDbCriteria;
 
 <?php foreach($columns as $name=>$column): ?>
