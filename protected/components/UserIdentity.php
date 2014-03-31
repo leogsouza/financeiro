@@ -7,7 +7,6 @@
  */
 class UserIdentity extends CUserIdentity
 {
-
 	private $_id;
 
 	/**
@@ -16,31 +15,23 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$record=Usuario::model()->findByAttributes(array('username' => $this->username));
-		if ($record === null) {
+		$usuario=Usuario::model()->findByAttributes(array('login' => $this->username));
+		if ($usuario === null) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		} else if ($record->senha !== crypt($this->password, $senha->password)) { // check crypted password against the one provided
+		} elseif (!$usuario->validatePassword($this->password)) { // check crypted password against the one provided
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		} else {
-			$this->_id = $record->id;
+			$this->_id = $usuario->id;
 			$this->errorCode = self::ERROR_NONE;
 		}
-		return !$this->errorCode;
+		return $this->errorCode == self::ERROR_NONE;
 	}
 
 	/**
 	 * Will return the ObjectId of the user
 	 * @see CUserIdentity::getId()
 	 */
-	function getId(){
+	public function getId(){
 		return $this->_id;
-	}
-	
-	/**
-	 * Will allows us to set the ObjectId of the user
-	 * @param MongoId $_id
-	 */
-	function setId($_id){
-		$this->_id=$_id;
 	}
 }

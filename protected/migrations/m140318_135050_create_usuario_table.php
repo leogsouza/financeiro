@@ -16,6 +16,17 @@ class m140318_135050_create_usuario_table extends CDbMigration
             'data_cadastro' => 'datetime',
             'data_alteracao' => 'datetime',
         ),'ENGINE = InnoDB');
+		
+		$this->insert('tbl_usuario', array(
+            'id' => null,
+            'nome' => 'Administrador',
+            'email' => 'leogsouza@gmail.com',
+            'login' => 'admin',
+            'senha' => CPasswordHelper::hashPassword('admin'),
+            'data_cadastro' => date('Y-m-d H:i:s'),
+            'data_alteracao' => date('Y-m-d H:i:s'),
+        )
+		);
             
 	}
 

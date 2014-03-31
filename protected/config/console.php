@@ -16,13 +16,7 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=financeiro',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'root',
-			'charset' => 'utf8',
-		),
+		'db'=>require(dirname(__FILE__).'/db.php'),
 		
 		'log'=>array(
 			'class'=>'CLogRouter',
