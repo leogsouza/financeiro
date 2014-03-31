@@ -5,7 +5,7 @@ assets/*
 protected/runtime/*
 !protected/runtime/.yii
 protected/data/*.db
-/protected/config/db.php
+!/protected/config/db.php
 web.config
 protected/uploads/*
 !protected/uploads/.yii
