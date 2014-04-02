@@ -8,4 +8,21 @@ class Categoria extends BaseCategoria
     {
 		return parent::model($className);
 	}
+    
+    public function behaviors()
+    {
+        return array(
+            'NestedSetBehavior'=>array(
+                'class'=>'ext.behaviors.NestedSetBehavior',
+                'leftAttribute'=>'lft',
+                'rightAttribute'=>'rgt',
+                'levelAttribute'=>'lvl',
+                'hasManyRoots' => true,
+            ),
+            'datetimeI18NBehavior' => array(
+                'class' => 'ext.behaviors.DateTimeI18NBehavior'
+            ),
+        );
+    }
+    
 }

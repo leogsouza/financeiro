@@ -1,9 +1,23 @@
 <?php
 
-class CategoriaController extends GxController 
+class CategoriaController extends BaseController 
 {
+    
+    public function behaviors()
+    {
+        return array(
+            'jsTreeBehavior' => array(
+                'class' => 'application.behaviors.JsTreeBehavior',
+                'modelClassName' => 'Categoria',
+                'form_alias_path' => 'application.views.categoria._form',
+                'view_alias_path' => 'application.views.categoria.view',
+                'label_property' => 'nome',
+                'rel_property' => 'nome'
+            )
+        );
+    }
 
-    public function filters() 
+    /*public function filters() 
     {
         return array(
             'accessControl', 
@@ -18,7 +32,10 @@ class CategoriaController extends GxController
                 'users'=>array('*'),
             ),
             array('allow', 
-                'actions'=>array('minicreate', 'create','update'),
+                'actions'=>array(
+                    'minicreate', 'create','update','fetchTree',
+                    'createnode','createroot','movecopy','remove','rename',
+                    'returnform','returnview','updatenode'),
                 'users'=>array('@'),
             ),
             array('allow', 
@@ -29,9 +46,9 @@ class CategoriaController extends GxController
                 'users'=>array('*'),
             ),
         );
-    }
+    }*/
 
-    public function actionView($id) {
+    /*public function actionView($id) {
             $this->render('view', array(
                 'model' => $this->loadModel($id, 'Categoria'),
             ));
@@ -45,8 +62,8 @@ class CategoriaController extends GxController
         if (isset($_POST['Categoria'])) 
         {
             $model->setAttributes($_POST['Categoria']);
-
-            if ($model->save()) 
+            $model->data_cadastro = $model->data_alteracao = date("d/m/Y H:i:s");
+            if ($model->saveNode()) 
             {
                 if (Yii::app()->getRequest()->getIsAjaxRequest())
                     Yii::app()->end();
@@ -66,7 +83,7 @@ class CategoriaController extends GxController
         if (isset($_POST['Categoria'])) 
         {
             $model->setAttributes($_POST['Categoria']);
-
+            $model->data_alteracao = date("d/m/Y H:i:s");
             if ($model->save()) 
             {
                 $this->redirect(array('view', 'id' => $model->id));
@@ -76,7 +93,7 @@ class CategoriaController extends GxController
         $this->render('update', array(
             'model' => $model,
         ));
-    }
+    }*/
 
     public function actionDelete($id) 
     {

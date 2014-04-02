@@ -1,0 +1,5 @@
+ALTER TABLE `financeiro`.`tbl_categoria` 
+ADD COLUMN `root` INT NULL DEFAULT NULL AFTER `nome`;
+
+ALTER TABLE `financeiro`.`tbl_categoria` 
+ADD COLUMN `descricao` VARCHAR(80) NULL DEFAULT NULL AFTER `nome`;
