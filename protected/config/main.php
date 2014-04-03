@@ -79,4 +79,5 @@ return array(
 	// using Yii::app()->params['paramName']
     'params' => require(dirname(__FILE__).'/params.php'),
 	'language' => 'pt_br',
+    'timeZone' => 'America/Sao_Paulo',
 );
