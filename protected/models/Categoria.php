@@ -25,39 +25,36 @@ class Categoria extends BaseCategoria
         );
     }
     
+    protected function beforeSave()
+    {
+        if($this->isNewRecord) {
+            $this->data_cadastro = $this->data_alteracao = date("d/m/Y H:i:s");
+        }
+        else {
+            $this->data_alteracao = date("d/m/Y H:i:s");
+        }
+        
+        return parent::beforeSave();
+    }
+    
     public static function getCategoriaOptions()
     {
         $categorias = self::model()->findAll(array('order' => 'root,lft'));
-        $level = 0;
-        foreach ($categorias as $n => $categoria) {
-            
-            echo str_repeat('--', $categoria->lvl).$categoria->lvl.' '.$categoria->nome.'<br />';
-            
-           /* if ($categoria->lvl == $level)
-                echo CHtml::closeTag('li') . "\n";
-            else if ($categoria->lvl > $level)
-                echo CHtml::openTag('ul') . "\n";
-            else {
-                echo CHtml::closeTag('li') . "\n";
-
-                for ($i = $level - $categoria->lvl; $i; $i--) {
-                    echo CHtml::closeTag('ul') . "\n";
-                    echo CHtml::closeTag('li') . "\n";
-                }
-            }
-
-            echo CHtml::openTag('li', array('id' => 'node_' . $categoria->primaryKey, 'rel' => $categoria->getAttribute($this->rel_property)));
-            echo CHtml::openTag('a', array('href' => '#'));
-            echo CHtml::encode($categoria->getAttribute($this->label_property));
-            echo CHtml::closeTag('a');
-
-            $level = $categoria->lvl;
+        $level = 1;
+        $arrOptions = array();
+        
+        foreach ($categorias as $categoria) {
+            $arrOptions[$categoria->id] = str_repeat(' - -', ($categoria->lvl-1)).' '.$categoria->nome;
         }
-
-        for ($i = $level; $i; $i--) {
-            echo CHtml::closeTag('li') . "\n";
-            echo CHtml::closeTag('ul') . "\n";*/
-        }
+        
+        return $arrOptions;
+    }
+    
+    public static function getChildren()
+    {
+        $categoria = Categoria::model()->findByPk(2);
+        
+        var_dump(($categoria->prevSibling));
     }
     
 }

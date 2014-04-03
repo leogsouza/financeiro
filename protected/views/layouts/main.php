@@ -55,6 +55,6 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
-
+<?php Yii::app()->bootstrap->register(); ?>
 </body>
 </html>

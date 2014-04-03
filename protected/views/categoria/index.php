@@ -14,8 +14,8 @@ $this->menu = array(
 <h1><?php echo GxHtml::encode(Categoria::label(2)); ?></h1>
 
 <?php
-
-Categoria::getCategoriaOptions();
+Categoria::getChildren();exit;
+echo CHtml::dropDownList('teste', '', Categoria::getCategoriaOptions());
 /* $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',

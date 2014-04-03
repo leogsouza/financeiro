@@ -7,10 +7,11 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Controle de Finanças Pessoal',
+	'name'=>'My Web Application',
     
     'aliases' => array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+        'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
     ),
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -34,6 +35,9 @@ return array(
 		),
         'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',   
+        ),
+        'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',   
         ),
 		// uncomment the following to enable URLs in path-format
 		

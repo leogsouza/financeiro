@@ -1,5 +1,11 @@
 <div class="form">
-
+<?php
+    /*cs()->registerScriptFile(bu('js/jquery.maskMoney.js'));
+    Yii::app()->clientScript->registerScript('maskMoney',
+        "$('#".CHtml::activeId($model,'valor')."').maskMoney({prefix:'R$ ',thousands:'.',decimal:','});".
+        "$('#".CHtml::activeId($model,'valor_pago')."').maskMoney({prefix:'R$ ',thousands:'.',decimal:','});"
+    );*/
+?>
 
 <?php $form = $this->beginWidget('GxActiveForm', array(
 	'id' => 'lancamento-form',
@@ -25,7 +31,7 @@
 		</div><!-- row -->
 		<div class="row">
 		<?php echo $form->labelEx($model,'categoria_id'); ?>
-		<?php echo $form->dropDownList($model, 'categoria_id', GxHtml::listDataEx(Categoria::model()->findAllAttributes(null, true))); ?>
+		<?php echo $form->dropDownList($model, 'categoria_id', Categoria::getCategoriaOptions()); ?>
 		<?php echo $form->error($model,'categoria_id'); ?>
 		</div><!-- row -->
 		<div class="row">
@@ -40,38 +46,58 @@
 		</div><!-- row -->
 		<div class="row">
 		<?php echo $form->labelEx($model,'data_vencimento'); ?>
-		<?php echo $form->textField($model, 'data_vencimento'); ?>
+            <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
+                'model' => $model,
+                'attribute' => 'data_vencimento',
+                'pluginOptions' => array(
+                    'format' => 'dd/mm/yyyy',
+                    'language' =>'pt-BR',
+                )
+            ));
+        ?>
+		<?php //echo $form->textField($model, 'data_vencimento'); ?>
 		<?php echo $form->error($model,'data_vencimento'); ?>
 		</div><!-- row -->
 		<div class="row">
 		<?php echo $form->labelEx($model,'data_pagamento'); ?>
-		<?php echo $form->textField($model, 'data_pagamento'); ?>
+		
+        <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
+                'model' => $model,
+                'attribute' => 'data_pagamento',
+                'pluginOptions' => array(
+                    'format' => 'dd/mm/yyyy',
+                    'language' =>'pt-BR',
+                )
+            ));
+        ?>
 		<?php echo $form->error($model,'data_pagamento'); ?>
-		</div><!-- row -->
-		<div class="row">
-		<?php echo $form->labelEx($model,'data_cadastro'); ?>
-		<?php echo $form->textField($model, 'data_cadastro'); ?>
-		<?php echo $form->error($model,'data_cadastro'); ?>
-		</div><!-- row -->
-		<div class="row">
-		<?php echo $form->labelEx($model,'data_alteracao'); ?>
-		<?php echo $form->textField($model, 'data_alteracao'); ?>
-		<?php echo $form->error($model,'data_alteracao'); ?>
-		</div><!-- row -->
+		</div><!-- row -->		
+		
 		<div class="row">
 		<?php echo $form->labelEx($model,'valor'); ?>
-		<?php echo $form->textField($model, 'valor', array('maxlength' => 15)); ?>
+        <?php $this->widget('yiiwheels.widgets.maskmoney.WhMaskMoney', array(
+            'model' => $model,
+            'attribute' => 'valor',
+            'pluginOptions' => array(
+                'thousands' =>'.',
+                'decimal' => ',',
+                'prefix' => 'R$ ',
+            )
+        ));?>
 		<?php echo $form->error($model,'valor'); ?>
 		</div><!-- row -->
 		<div class="row">
 		<?php echo $form->labelEx($model,'valor_pago'); ?>
-		<?php echo $form->textField($model, 'valor_pago', array('maxlength' => 15)); ?>
+		<?php $this->widget('yiiwheels.widgets.maskmoney.WhMaskMoney', array(
+            'model' => $model,
+            'attribute' => 'valor_pago',
+            'pluginOptions' => array(
+                'thousands' =>'.',
+                'decimal' => ',',
+                'prefix' => 'R$ ',
+            )
+        ));?>
 		<?php echo $form->error($model,'valor_pago'); ?>
-		</div><!-- row -->
-		<div class="row">
-		<?php echo $form->labelEx($model,'usuario_id'); ?>
-		<?php echo $form->dropDownList($model, 'usuario_id', GxHtml::listDataEx(Usuario::model()->findAllAttributes(null, true))); ?>
-		<?php echo $form->error($model,'usuario_id'); ?>
 		</div><!-- row -->
 
 

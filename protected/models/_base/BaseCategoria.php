@@ -11,11 +11,13 @@
  *
  * @property integer $id
  * @property string $nome
+ * @property integer $root
  * @property integer $lft
  * @property integer $rgt
  * @property integer $lvl
  * @property string $data_cadastro
  * @property string $data_alteracao
+ * @property string $descricao
  *
  * @property Lancamento[] $lancamentos
  */
@@ -46,11 +48,12 @@ abstract class BaseCategoria extends GxActiveRecord
     {
 		return array(
 			array('nome', 'required'),
-			array('lft, rgt, lvl', 'numerical', 'integerOnly'=>true),
+			array('root, lft, rgt, lvl', 'numerical', 'integerOnly'=>true),
 			array('nome', 'length', 'max'=>45),
+			array('descricao', 'length', 'max'=>80),
 			array('data_cadastro, data_alteracao', 'safe'),
-			array('lft, rgt, lvl, data_cadastro, data_alteracao', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, nome, lft, rgt, lvl, data_cadastro, data_alteracao', 'safe', 'on'=>'search'),
+			array('root, lft, rgt, lvl, data_cadastro, data_alteracao, descricao', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, nome, root, lft, rgt, lvl, data_cadastro, data_alteracao, descricao', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,11 +75,13 @@ abstract class BaseCategoria extends GxActiveRecord
 		return array(
 			'id' => Yii::t('app', 'ID'),
 			'nome' => Yii::t('app', 'Nome'),
+			'root' => Yii::t('app', 'Root'),
 			'lft' => Yii::t('app', 'Lft'),
 			'rgt' => Yii::t('app', 'Rgt'),
 			'lvl' => Yii::t('app', 'Lvl'),
 			'data_cadastro' => Yii::t('app', 'Data Cadastro'),
 			'data_alteracao' => Yii::t('app', 'Data Alteracao'),
+			'descricao' => Yii::t('app', 'Descricao'),
 			'lancamentos' => null,
 		);
 	}
@@ -87,11 +92,13 @@ abstract class BaseCategoria extends GxActiveRecord
 
 		$criteria->compare('id', $this->id);
 		$criteria->compare('nome', $this->nome, true);
+		$criteria->compare('root', $this->root);
 		$criteria->compare('lft', $this->lft);
 		$criteria->compare('rgt', $this->rgt);
 		$criteria->compare('lvl', $this->lvl);
 		$criteria->compare('data_cadastro', $this->data_cadastro, true);
 		$criteria->compare('data_alteracao', $this->data_alteracao, true);
+		$criteria->compare('descricao', $this->descricao, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

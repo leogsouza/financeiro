@@ -56,7 +56,7 @@ abstract class BaseLancamento extends GxActiveRecord
 			array('categoria_id, tipo, status, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('descricao', 'length', 'max'=>255),
 			array('documento', 'length', 'max'=>20),
-			array('valor, valor_pago', 'length', 'max'=>15),
+			//array('valor, valor_pago', 'length', 'max'=>15),
 			array('data_vencimento, data_pagamento, data_cadastro, data_alteracao', 'safe'),
 			array('documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('id, descricao, documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago, usuario_id', 'safe', 'on'=>'search'),

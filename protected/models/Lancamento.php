@@ -8,4 +8,21 @@ class Lancamento extends BaseLancamento
     {
 		return parent::model($className);
 	}
+    
+    public function behaviors()
+    {
+        return array(
+            'datetimeI18NBehavior' => array(
+                'class' => 'ext.behaviors.DateTimeI18NBehavior'
+            ),
+        );
+    }
+    
+    public function beforeSave()
+    {
+        if($this->isNewRecord) {
+            $this->data_cadastro = $this->data_alteracao = date('d/m/Y H:i:s');
+        }
+        return parent::beforeSave();
+    }
 }
