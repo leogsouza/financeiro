@@ -22,6 +22,8 @@ class Lancamento extends BaseLancamento
     {
         if($this->isNewRecord) {
             $this->data_cadastro = $this->data_alteracao = date('d/m/Y H:i:s');
+        } else {
+            $this->data_alteracao = date('d/m/Y H:i:s');
         }
         return parent::beforeSave();
     }

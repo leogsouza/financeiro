@@ -52,9 +52,36 @@ class Categoria extends BaseCategoria
     
     public static function getChildren()
     {
-        $categoria = Categoria::model()->findByPk(2);
+        $categoria = Categoria::model()->findByPk(1);
         
-        var_dump(($categoria->prevSibling));
+        $nivel = 1;
+        $path = '';
+        $roots = $categoria->roots()->findAll();
+        $arrLevel = array();
+        foreach($roots as $root)
+        {
+            $path = $nivel.'.';
+            $arrLevel[$path] = $root->nome;
+            $root->getFilhos($arrLevel,$path);
+            $nivel++;
+        }
+        var_dump($arrLevel);
+        //var_dump($categoria->nextSibling);
+    }
+    
+    public function getFilhos($arrLevel,$path)
+    {
+        $nivel = 1;
+        $filhos = $this->children()->findAll();
+       // var_dump(count($filhos));exit;
+        foreach($filhos as $filho)
+        {
+            //$path = //$nivel.'.';
+            $arrLevel[$path.$nivel.'.'] = $filho->nome;
+            $nivel++;
+        }
+        
+        var_dump($arrLevel);
     }
     
 }
