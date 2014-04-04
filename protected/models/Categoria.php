@@ -39,49 +39,34 @@ class Categoria extends BaseCategoria
     
     public static function getCategoriaOptions()
     {
-        $categorias = self::model()->findAll(array('order' => 'root,lft'));
-        $level = 1;
+        $nivel = 1;
+        $path = '';
+        $roots = self::model()->roots()->findAll();
         $arrOptions = array();
         
-        foreach ($categorias as $categoria) {
-            $arrOptions[$categoria->id] = str_repeat(' - -', ($categoria->lvl-1)).' '.$categoria->nome;
+        foreach ($roots as $root) {
+            $path = $nivel.'.';
+            $arrOptions[$root->id] = $path.' '.$root->nome;
+            $root->getFilhos($arrOptions,$path);
+            $nivel++;
         }
         
         return $arrOptions;
     }
     
-    public static function getChildren()
-    {
-        $categoria = Categoria::model()->findByPk(1);
-        
-        $nivel = 1;
-        $path = '';
-        $roots = $categoria->roots()->findAll();
-        $arrLevel = array();
-        foreach($roots as $root)
-        {
-            $path = $nivel.'.';
-            $arrLevel[$path] = $root->nome;
-            $root->getFilhos($arrLevel,$path);
-            $nivel++;
-        }
-        var_dump($arrLevel);
-        //var_dump($categoria->nextSibling);
-    }
-    
-    public function getFilhos($arrLevel,$path)
+    public function getFilhos(&$arrLevel,$path)
     {
         $nivel = 1;
         $filhos = $this->children()->findAll();
-       // var_dump(count($filhos));exit;
+       
         foreach($filhos as $filho)
         {
-            //$path = //$nivel.'.';
-            $arrLevel[$path.$nivel.'.'] = $filho->nome;
+            $pathFilho = $path.$nivel.'.';
+            $arrLevel[$filho->id] = str_repeat('&nbsp;&nbsp;', ($filho->lvl-1)*2).$pathFilho.' '.$filho->nome;
+            $filho->getFilhos($arrLevel,$pathFilho);
+            
             $nivel++;
         }
-        
-        var_dump($arrLevel);
     }
     
 }
