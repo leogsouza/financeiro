@@ -22,6 +22,8 @@ return array(
         'application.components.*',
         'ext.giix-components.*',
         'bootstrap.helpers.TbHtml',
+        'bootstrap.helpers.TbArray',
+        'bootstrap.behaviors.TbWidget',
 	),
     'modules'=>require(dirname(__FILE__).'/modules.php'),
     
@@ -48,6 +50,7 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+            'showScriptName' => false,
 		),
 		
         

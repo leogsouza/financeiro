@@ -7,9 +7,8 @@
     );*/
 ?>
 
-<?php $form = $this->beginWidget('GxActiveForm', array(
-	'id' => 'lancamento-form',
-	'enableAjaxValidation' => false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
 ));
 ?>
 
@@ -35,8 +34,7 @@
 		<?php echo $form->error($model,'categoria_id'); ?>
 		</div><!-- row -->
 		<div class="row">
-		<?php echo $form->labelEx($model,'tipo'); ?>
-		<?php echo $form->textField($model, 'tipo'); ?>
+		<?php echo $form->inlineRadioButtonListControlGroup($model, 'tipo',array(1=>'Despesa', 2=>'Receita')); ?>
 		<?php echo $form->error($model,'tipo'); ?>
 		</div><!-- row -->
 		<div class="row">
