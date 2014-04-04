@@ -31,7 +31,7 @@
 		</div><!-- row -->
 		<div class="row">
 		<?php echo $form->labelEx($model,'categoria_id'); ?>
-		<?php echo $form->dropDownList($model, 'categoria_id', Categoria::getCategoriaOptions()); ?>
+		<?php echo $form->dropDownList($model, 'categoria_id', Categoria::getCategoriaOptions(),array('encode' => false)); ?>
 		<?php echo $form->error($model,'categoria_id'); ?>
 		</div><!-- row -->
 		<div class="row">
