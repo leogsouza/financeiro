@@ -24,7 +24,7 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
             <li class="start active ">
-                <?php echo l('<i class="fa fa-home"></i><span class="title">Dashboarde</span><span class="selected"></span>', app()->homeUrl); ?>
+                <?php echo l('<i class="fa fa-home"></i><span class="title">Dashboard</span><span class="selected"></span>', app()->homeUrl); ?>
             </li>
             <li>
                 <?php echo l('<i class="fa fa-list"></i><span class="title">Categorias</span>', array('/categoria')); ?>

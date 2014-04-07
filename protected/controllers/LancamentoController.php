@@ -2,7 +2,7 @@
 
 class LancamentoController extends GxController 
 {
-
+    public $layout = '//layouts/content';
     public function filters() 
     {
         return array(
