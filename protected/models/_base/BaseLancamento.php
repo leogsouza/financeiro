@@ -56,7 +56,7 @@ abstract class BaseLancamento extends GxActiveRecord
 			array('categoria_id, tipo, status, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('descricao', 'length', 'max'=>255),
 			array('documento', 'length', 'max'=>20),
-			array('valor, valor_pago', 'length', 'max'=>15),
+			//array('valor, valor_pago', 'length', 'max'=>15),
 			array('data_vencimento, data_pagamento, data_cadastro, data_alteracao', 'safe'),
 			array('documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('id, descricao, documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago, usuario_id', 'safe', 'on'=>'search'),
@@ -81,7 +81,7 @@ abstract class BaseLancamento extends GxActiveRecord
     {
 		return array(
 			'id' => Yii::t('app', 'ID'),
-			'descricao' => Yii::t('app', 'Descricao'),
+			'descricao' => Yii::t('app', 'Descrição'),
 			'documento' => Yii::t('app', 'Documento'),
 			'categoria_id' => null,
 			'tipo' => Yii::t('app', 'Tipo'),
@@ -89,7 +89,7 @@ abstract class BaseLancamento extends GxActiveRecord
 			'data_vencimento' => Yii::t('app', 'Data Vencimento'),
 			'data_pagamento' => Yii::t('app', 'Data Pagamento'),
 			'data_cadastro' => Yii::t('app', 'Data Cadastro'),
-			'data_alteracao' => Yii::t('app', 'Data Alteracao'),
+			'data_alteracao' => Yii::t('app', 'Data Alteração'),
 			'valor' => Yii::t('app', 'Valor'),
 			'valor_pago' => Yii::t('app', 'Valor Pago'),
 			'usuario_id' => null,

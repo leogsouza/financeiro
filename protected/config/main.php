@@ -7,10 +7,11 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Controle de Finanças Pessoal',
+	'name'=>'Controle Financeiro Pessoal',
     
     'aliases' => array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+        'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
     ),
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -21,6 +22,9 @@ return array(
         'application.components.*',
         'ext.giix-components.*',
         'bootstrap.helpers.TbHtml',
+        'bootstrap.helpers.TbArray',
+        'bootstrap.widgets.*',
+        'bootstrap.behaviors.TbWidget',
 	),
     'modules'=>require(dirname(__FILE__).'/modules.php'),
     
@@ -35,8 +39,11 @@ return array(
         'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',   
         ),
+        'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',   
+        ),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -44,8 +51,9 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+            'showScriptName' => false,
 		),
-		*/
+		
         
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
@@ -79,4 +87,5 @@ return array(
 	// using Yii::app()->params['paramName']
     'params' => require(dirname(__FILE__).'/params.php'),
 	'language' => 'pt_br',
+    'timeZone' => 'America/Sao_Paulo',
 );

@@ -1,7 +1,7 @@
 <?php
 
 $this->breadcrumbs = array(
-	Lancamento::label(2),
+	Lancamento::label(2) => array('admin'),
 	Yii::t('app', 'Index'),
 );
 
