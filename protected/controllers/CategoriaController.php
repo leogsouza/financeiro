@@ -2,7 +2,6 @@
 
 class CategoriaController extends BaseController 
 {
-    
     public function behaviors()
     {
         return array(

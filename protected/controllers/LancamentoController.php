@@ -2,7 +2,8 @@
 
 class LancamentoController extends GxController 
 {
-
+    public $layout = '//layouts/content';
+    public $defaultAction = 'admin';
     public function filters() 
     {
         return array(
@@ -45,7 +46,7 @@ class LancamentoController extends GxController
 		if (isset($_POST['Lancamento'])) 
         {
 			$model->setAttributes($_POST['Lancamento']);
-
+            $model->usuario_id = user()->id;
 			if ($model->save()) 
             {
 				if (Yii::app()->getRequest()->getIsAjaxRequest())

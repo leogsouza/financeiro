@@ -5,6 +5,7 @@ $this->breadcrumbs = array(
 	Yii::t('app', 'Manage'),
 );
 
+$this->pageTitle = Yii::t('app', 'Manage') . ' ' . GxHtml::encode($model->label(2));
 $this->menu = array(
 		array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url'=>array('index')),
 		array('label'=>Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
@@ -23,50 +24,88 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<div class="row">
+    <div class="col-md-12 margin-bottom-10">
+        <?php echo TbHtml::buttonDropdown('Ações', array(
+            array('label' => 'Inserir Lançamento', 'url' => array('create')),    
+        ),array('groupOptions' =>array('class' => 'pull-right'),'color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
 
-<h1><?php echo Yii::t('app', 'Manage') . ' ' . GxHtml::encode($model->label(2)); ?></h1>
+    
+    </div>
+    <div class="col-md-12 margin-bottom-10">
+    <?php // echo GxHtml::link(Yii::t('app', 'Advanced Search'), '#', array('class' => 'search-button')); ?>
+   
+    <div class="search-form" style="display: none">
+        <?php $this->renderPartial('_search', array(
+            'model' => $model,
+        )); ?>
+    </div><!-- search-form -->
 
-<p>
-You may optionally enter a comparison operator (&lt;, &lt;=, &gt;, &gt;=, &lt;&gt; or =) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+    <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
+        'id' => 'lancamento-grid',
+        'fixedHeader' => true,
+        'type' => 'striped',
+        'responsiveTable' => true,
+        'dataProvider' => $model->search(),
+        'filter' => $model,
+        'template' => "{items}",
+        'columns' => array(
+            'id',
+            'descricao',
+            'documento',
+            array(
+                'name'=>'categoria_id',
+                'value'=>'GxHtml::valueEx($data->categoria)',
+                'filter'=>Categoria::getCategoriaOptions(),
+            ),
+            array(
+                'name' => 'tipo',
+                'value' => '$data->tipotext',
+                'filter' => $model->tipooptions,
+            ),
+            array(
+                'name' => 'status',
+                'value' => '$data->statustext',
+                'filter' => $model->statusoptions,
+            ),
+            
+            /*
+            'data_vencimento',
+            'data_pagamento',
+            'data_cadastro',
+            'data_alteracao',
+            'valor',
+            'valor_pago',
+            array(
+                    'name'=>'usuario_id',
+                    'value'=>'GxHtml::valueEx($data->usuario)',
+                    'filter'=>GxHtml::listDataEx(Usuario::model()->findAllAttributes(null, true)),
+                    ),
+            */
+            array(
+                'class' => 'TbButtonColumn',
+                'template' => "{view} | {update} | {delete}",
+                'buttons' => array(
+                    'view' => array(
+                        'label' => '<i class="fa fa-eye"></i>',
+                        'imageUrl' => false,
+                        'icon' =>false,
+                    ),
+                    'update' => array(
+                        'label' => '<i class="fa fa-pencil"></i>',
+                        'icon' => false,
+                        'imageUrl' => false,
+                    ),
+                    'delete' => array(
+                        'label' => '<i class="fa fa-trash-o"></i>',
+                        'icon' => false,
+                        'imageUrl' => false,
+                    )
+                )
+            ),
+        ),
+    )); ?>
+    </div>
+</div>
 
-<?php echo GxHtml::link(Yii::t('app', 'Advanced Search'), '#', array('class' => 'search-button')); ?>
-<div class="search-form">
-<?php $this->renderPartial('_search', array(
-	'model' => $model,
-)); ?>
-</div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id' => 'lancamento-grid',
-	'dataProvider' => $model->search(),
-	'filter' => $model,
-	'columns' => array(
-		'id',
-		'descricao',
-		'documento',
-		array(
-				'name'=>'categoria_id',
-				'value'=>'GxHtml::valueEx($data->categoria)',
-				'filter'=>GxHtml::listDataEx(Categoria::model()->findAllAttributes(null, true)),
-				),
-		'tipo',
-		'status',
-		/*
-		'data_vencimento',
-		'data_pagamento',
-		'data_cadastro',
-		'data_alteracao',
-		'valor',
-		'valor_pago',
-		array(
-				'name'=>'usuario_id',
-				'value'=>'GxHtml::valueEx($data->usuario)',
-				'filter'=>GxHtml::listDataEx(Usuario::model()->findAllAttributes(null, true)),
-				),
-		*/
-		array(
-			'class' => 'CButtonColumn',
-		),
-	),
-)); ?>
