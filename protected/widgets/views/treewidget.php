@@ -13,19 +13,30 @@
   * @version 1.0.0
   */
   -->
-<div class="span8">
-    <h1 class="page-header">CActiveRecord with NestedSet behavior Administration with jstree </h1>
+<div class="col-md-12">
     <div class="row well">
         <ul>
-            <li>If tree is empty,start by creating one or more root nodes.</li>
-            <li>Right Click on a node to see available operations.</li>
-            <li>Move nodes with Drag And Drop.You can move a non-root node to root position and vice versa.</li>
-            <li>Root nodes cannot be reordered.Their order is fixed by id.</li>
+            <li>
+                Se a árvore de categoria estiver vazia, 
+                comece criando um ou mais nó raiz
+            </li>
+            <li>
+                Clique com o botão direito do mouse em um nó para ver as 
+                ações disponíveis.
+            </li>
+            <li>
+                Mova os nós com clique e arraste. Você pode mover um nó que 
+                não seja o nó raiz para uma posição de nó raiz e vice-versa.
+            </li>
+            <li>
+                Nós raízes não podem ser reordenados. Suas posições são fixas
+                por id.
+            </li>
         </ul>
     </div>
     <div class="row">
-        <input id="reload" type="button" value="Refresh" class="btn btn-large pull-left">
-        <input id="add_root" type="button" value="Create Root" class="btn btn-large pull-left">
+        <button id="reload" value="" class="btn btn-large">Atualizar</button>
+        <button  id="add_root" type="button" value="" class="btn btn-large">Criar Nó Raiz</button>
     </div>
     <div class="row">
         <!--The tree will be rendered in this div-->

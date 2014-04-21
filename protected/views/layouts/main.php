@@ -24,26 +24,26 @@ License: You must have a valid license purchased only from themeforest(the above
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-<link href="plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-<link href="plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
-<link href="css/style-metronic.css" rel="stylesheet" type="text/css"/>
-<link href="css/style.css" rel="stylesheet" type="text/css"/>
-<link href="css/style-responsive.css" rel="stylesheet" type="text/css"/>
-<link href="css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="css/pages/tasks.css" rel="stylesheet" type="text/css"/>
-<link href="css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="css/print.css" rel="stylesheet" type="text/css" media="print"/>
-<link href="css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo bu();?>/css/themes/default.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo bu();?>/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="<?php echo bu();?>/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -56,12 +56,12 @@ License: You must have a valid license purchased only from themeforest(the above
 	<div class="header-inner">
 		<!-- BEGIN LOGO -->
 		<a class="navbar-brand" href="index.html">
-			<img src="img/logo.png" alt="logo" class="img-responsive"/>
+			<img src="<?php echo bu();?>/img/logo.png" alt="logo" class="<?php echo bu();?>/img-responsive"/>
 		</a>
 		<!-- END LOGO -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<img src="img/menu-toggler.png" alt=""/>
+			<img src="<?php echo bu();?>/img/menu-toggler.png" alt=""/>
 		</a>
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
@@ -210,7 +210,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="img/avatar2.jpg" alt=""/>
+										<img src="<?php echo bu();?>/img/avatar2.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -228,7 +228,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="img/avatar3.jpg" alt=""/>
+										<img src="<?php echo bu();?>/img/avatar3.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -246,7 +246,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="img/avatar1.jpg" alt=""/>
+										<img src="<?php echo bu();?>/img/avatar1.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -264,7 +264,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="img/avatar2.jpg" alt=""/>
+										<img src="<?php echo bu();?>/img/avatar2.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -282,7 +282,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="inbox.html?a=view">
 									<span class="photo">
-										<img src="img/avatar3.jpg" alt=""/>
+										<img src="<?php echo bu();?>/img/avatar3.jpg" alt=""/>
 									</span>
 									<span class="subject">
 										<span class="from">
@@ -469,7 +469,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- BEGIN USER LOGIN DROPDOWN -->
 			<li class="dropdown user">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" src="img/avatar1_small.jpg"/>
+					<img alt="" src="<?php echo bu();?>/img/avatar1_small.jpg"/>
 					<span class="username">
 						 Bob Nilson
 					</span>
@@ -555,50 +555,50 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="plugins/respond.min.js"></script>
-<script src="plugins/excanvas.min.js"></script> 
+<script src="<?php echo bu();?>/plugins/respond.min.js"></script>
+<script src="<?php echo bu();?>/plugins/excanvas.min.js"></script> 
 <![endif]-->
-<script src="plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!--<script src="<?php echo bu();?>/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>-->
+<script src="<?php echo bu();?>/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<script src="plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<script src="plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- <script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>-->
+<script src="<?php echo bu();?>/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
 <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-<script src="plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js" type="text/javascript"></script>
-<script src="plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="scripts/core/app.js" type="text/javascript"></script>
-<script src="scripts/custom/index.js" type="text/javascript"></script>
-<script src="scripts/custom/tasks.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/scripts/core/app.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/scripts/custom/index.js" type="text/javascript"></script>
+<script src="<?php echo bu();?>/scripts/custom/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {    
    App.init(); // initlayout and core plugins
    Index.init();
-   Index.initJQVMAP(); // init index page's custom scripts
+   //Index.initJQVMAP(); // init index page's custom scripts
    Index.initCalendar(); // init index page's custom scripts
    Index.initCharts(); // init index page's custom scripts
    Index.initChat();

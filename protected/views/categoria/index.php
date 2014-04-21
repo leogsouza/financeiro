@@ -1,14 +1,12 @@
 <?php
 
 $this->breadcrumbs = array(
-	Categoria::label(2),
+	Categoria::label(2) => '#',
 	Yii::t('app', 'Index'),
 );
+$this->pageTitle = Categoria::label(2);
 
 ?>
-
-<h1><?php echo GxHtml::encode(Categoria::label(2)); ?></h1>
-
 <?php
 
 /**
