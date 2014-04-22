@@ -10,9 +10,33 @@ $this->pageTitle = Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label())
 ?>
 <div class="row">
     <div class="col-md-12 margin-bottom-10">
-        <?php echo TbHtml::buttonDropdown('Ações', array(
-            array('label' => 'Voltar para lista', 'url' => array('admin')),    
-        ),array('groupOptions' =>array('class' => 'pull-right'),'color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
+        <?php echo TbHtml::buttonGroup(array(
+            array(
+                'label' => '<i class="fa fa-repeat"></i> '.
+                    Yii::t('app', 'Update') . ' ' . $model->label(), 
+                'url' => array(
+                    'update','id' =>$model->id
+                ),
+                'htmlOptions' => array('class'=> 'green')
+            ),
+            array(
+                'label' => '<i class="fa fa-trash-o"></i> '.
+                    Yii::t('app', 'Delete') . ' ' . $model->label(), 
+                'url'=>'#', 
+                'htmlOptions' => array(
+                    'class'=> 'red', 
+                    'submit' => array(
+                        'delete', 'id' => $model->id
+                    ),
+                    'confirm'=>'Deseja excluir este lançamento?'
+                )
+            ),
+            array(
+                'label' => '<i class="fa fa-mail-reply"></i> Voltar para lista',
+                'url' => array('admin'),
+                'htmlOptions' => array('class' => 'default')
+            ),    
+        )); ?>
 
     
     </div>
@@ -28,8 +52,14 @@ $this->pageTitle = Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label())
 			'type' => 'raw',
 			'value' => $model->categoria !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->categoria)), array('categoria/view', 'id' => GxActiveRecord::extractPkValue($model->categoria, true))) : null,
         ),
-        'tipo',
-        'status',
+        array(
+            'name' => 'tipo',
+            'value' => $model->tipotext,
+        ),
+        array(
+            'name' => 'status',
+            'value' => $model->statustext,
+        ),
         'data_vencimento',
         'data_pagamento',
         'data_cadastro',

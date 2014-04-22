@@ -26,9 +26,12 @@ $('.search-form form').submit(function(){
 ?>
 <div class="row">
     <div class="col-md-12 margin-bottom-10">
-        <?php echo TbHtml::buttonDropdown('Ações', array(
-            array('label' => 'Inserir Lançamento', 'url' => array('create')),    
-        ),array('groupOptions' =>array('class' => 'pull-right'),'color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
+        <?php echo TbHtml::buttonGroup(array(
+            array(
+                'label' => '<i class="fa fa-plus"></i> Inserir Lançamento', 
+                'url' => array('create'),    
+                'htmlOptions' =>array('class' => 'green')
+        ))); ?>
 
     
     </div>
