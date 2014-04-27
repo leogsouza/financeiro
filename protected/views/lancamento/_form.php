@@ -36,7 +36,7 @@
                     <div class="col-md-4">
                         <?php echo $form->dropDownList($model,'categoria_id',
                             Categoria::getCategoriaOptions(),
-                            array('class' => 'form-control')); ?>
+                            array('class' => 'form-control','encode' => false)); ?>
                         <?php echo $form->error($model,'categoria_id'); ?>
                     </div>
                 </div>

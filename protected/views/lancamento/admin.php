@@ -53,9 +53,7 @@ $('.search-form form').submit(function(){
         'filter' => $model,
         'template' => "{items}",
         'columns' => array(
-            'id',
             'descricao',
-            'documento',
             array(
                 'name'=>'categoria_id',
                 'value'=>'GxHtml::valueEx($data->categoria)',

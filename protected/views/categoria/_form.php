@@ -14,21 +14,12 @@
   */
   -->
 
-<?php if ($model->isNewRecord) : ?>
-<h3><?php echo Yii::t('global', 'Create') ?> <?php echo Yii::t('global', $modelClassName) ?></h3>
-<?php elseif (!$model->isNewRecord): ?>
-<h3><?php echo Yii::t('global', 'Update') ?> <?php echo Yii::t('global', $modelClassName) ?></h3>
-<?php endif; ?>
-
-<p> <h2><?php //echo $model->name;?></h2><p>
-
-<?php      $val_error_msg = Yii::t('global', "Error.$modelClassName  não foi salvo.");
+  <?php      $val_error_msg = Yii::t('global', "Error.$modelClassName  não foi salvo.");
                    $val_success_message = ($model->isNewRecord) ?
                    Yii::t('global', "$modelClassName foi criada com sucesso.") :
                     Yii::t('global', "$modelClassName  foi atualizada com sucesso.");
 ?>
-
-<div id="success-note" class="alert alert-success"
+  <div id="success-note" class="alert alert-success"
      style="display:none;">
     <?php   echo $val_success_message;  ?>
 </div>
@@ -37,88 +28,87 @@
      style="display:none;">
     <?php   echo $val_error_msg;  ?>
 </div>
-
-<div id="ajax-form" class='form'>
-    <?php
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>Lançamento
+        </div>
+    </div>
+    <div id="ajax-form" class="portlet-body form">
+        
+        <?php
     $formId = "$modelClassName-form";
 
     $actionUrl=($model->isNewRecord)?
      (! isset($_POST['create_root'])?CController::createUrl($this->id.'/createnode'):CController::createUrl($this->id.'/createRoot')):
     CController::createUrl($this->id.'/updatenode');
 
-    $form = $this->beginWidget('CActiveForm', array(
-                                                   'id' => $formId,
-                                                   //  'htmlOptions' => array('enctype' => 'multipart/form-data'),
-                                                   'action' => $actionUrl,
-                                                   // 'enableAjaxValidation'=>true,
-                                                   'enableClientValidation' => true,
-                                                   'focus' => array($model, 'nome'),
-                                                   'errorMessageCssClass' => 'alert alert-error',
-                                                   'clientOptions' => array(
-                                                       'validateOnSubmit' => true,
-                                                       'validateOnType' => false,
-                                                       'inputContainer' => '.control-group',
-                                                       'errorCssClass' => 'error',
-                                                       'successCssClass' => 'success',
-                                                       'afterValidate' => 'js:function(form,data,hasError){$.js_afterValidate(form,data,hasError);  }',
-                                                   ),
-                                              ));
+    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+            'id' => $formId,
+            'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+            //  'htmlOptions' => array('enctype' => 'multipart/form-data'),
+            'action' => $actionUrl,
+            // 'enableAjaxValidation'=>true,
+            'enableClientValidation' => true,
+            'focus' => array($model, 'nome'),
+            'errorMessageCssClass' => 'alert alert-error',
+            'clientOptions' => array(
+                'validateOnSubmit' => true,
+                'validateOnType' => false,
+                'inputContainer' => '.control-group',
+                'errorCssClass' => 'error',
+                'successCssClass' => 'success',
+                'afterValidate' => 'js:function(form,data,hasError){$.js_afterValidate(form,data,hasError);  }',
+            ),
+       ));
     ?>
-
-    <?php
-         echo $form->errorSummary($model,
-                                                                     '<div style="font-weight:bold">Please correct these errors:</div>',
-                                                                      NULL,
-                                                                      array('class' => 'alert alert-error')
-);
-    ?>
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
-    <fieldset>
-
-
-        <!--
-        Modify the input fields according to your model.
-        -->
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'nome', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php
-                    if(!$model->isNewRecord) {
-                        $name = $model->nome;
-                    } elseif(isset($_POST['name'])) {
-                        $name = $_POST['name'];
-                    } else {
-                        $name = '';
-                    }                ?>
-                <?php echo $form->textField($model, 'nome', array('value'=>$name,'class' => 'span4', 'size' => 60, 'maxlength' => 128)); ?>
-                <p class="help-block"><?php echo $form->error($model, 'nome'); ?></p>
+       
+            <div class="form-body">
+                <?php echo $form->errorSummary($model,
+                    '<div style="font-weight:bold">Please correct these errors:</div>',
+                     NULL,
+                     array('class' => 'alert alert-error')
+                ); ?>
+                <div class="form-group">
+                    <?php echo $form->labelEx($model, 'nome', array('class' => 'control-label col-md-3')); ?>
+                    <div class="col-md-4">
+                        <?php
+                            if(!$model->isNewRecord) {
+                                $name = $model->nome;
+                            } elseif(isset($_POST['name'])) {
+                                $name = $_POST['name'];
+                            } else {
+                                $name = '';
+                            }                ?>
+                        <?php echo $form->textField($model, 'nome', array('value'=>$name,'class' => 'form-control', 'size' => TbHtml::INPUT_SIZE_MEDIUM, 'maxlength' => 128)); ?>
+                        <p class="help-block"><?php echo $form->error($model, 'nome'); ?></p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <?php echo $form->labelEx($model,'descricao',array('class' => 'control-label col-md-3'));?>
+                    <div class="col-md-4">
+                        <?php echo $form->textField($model,'descricao',
+                            array('class' => 'form-control input-medium')); ?>
+                        <?php echo $form->error($model,'descricao'); ?>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'descricao', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php echo $form->textArea($model, 'descricao', array('class' => 'span4', 'rows' => 5, 'cols' => 50)); ?>
-                <p class="help-block"><?php echo $form->error($model, 'descricao'); ?></p>
-            </div>
-        </div>
-
-        <input type="hidden" name="YII_CSRF_TOKEN"
+            <input type="hidden" name="YII_CSRF_TOKEN"
                value="<?php echo Yii::app()->request->csrfToken; ?>"/>
-        <input type="hidden" name= "parent_id" value="<?php echo isset($_POST['parent_id'])?$_POST['parent_id']:''; ?>"  />
+            <input type="hidden" name= "parent_id" value="<?php echo isset($_POST['parent_id'])?$_POST['parent_id']:''; ?>"  />
 
-        <?php  if (!$model->isNewRecord): ?>
-        <input type="hidden" name="update_id"
-               value="<?php echo $model->id; ?>"/>
-        <?php endif; ?>
-        <div class="control-group">
-            <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('global', 'Enviar')
-                                                     : Yii::t('global', 'Salvar'),
-                                             array('class' => 'btn btn-large pull-right')); ?>
-        </div>
-</fieldset>
-        <?php  $this->endWidget(); ?>
+            <?php  if (!$model->isNewRecord): ?>
+            <input type="hidden" name="update_id"
+                   value="<?php echo $model->id; ?>"/>
+            <?php endif; ?>
+            <div class="form-actions">
+                <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('global', 'Enviar')
+                                                         : Yii::t('global', 'Salvar'),
+                                                 array('class' => 'btn btn-large pull-right')); ?>
+            </div>
+        <?php
+        $this->endWidget();
+        ?>
+    </div>
 </div>
-<!-- form -->
-
-

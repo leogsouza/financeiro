@@ -1280,7 +1280,7 @@
 							"left"  : (rtl ? "auto" : (w1 + w2 + 4) + "px"),
 							"right" : (rtl ? (w1 + w2 + 4) + "px" : "auto"),
 							"top" : "0px",
-							"height" : (this.data.core.li_height - 2) + "px",
+							"height" : (this.data.core.li_height + 2) + "px",
 							"lineHeight" : (this.data.core.li_height - 2) + "px",
 							"width" : "150px" // will be set a bit further down
 						},
