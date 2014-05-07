@@ -35,7 +35,7 @@ $('.search-form form').submit(function(){
 
     
     </div>
-    <div class="col-md-12 margin-bottom-10">
+    <div class="col-md-8 margin-bottom-10">
     <?php // echo GxHtml::link(Yii::t('app', 'Advanced Search'), '#', array('class' => 'search-button')); ?>
    
     <div class="search-form" style="display: none">
@@ -47,64 +47,71 @@ $('.search-form form').submit(function(){
     <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
         'id' => 'lancamento-grid',
         'fixedHeader' => true,
-        'type' => 'striped',
+        'type' => 'striped bordered condensed',
         'responsiveTable' => true,
         'dataProvider' => $model->search(),
         'filter' => $model,
-        'template' => "{items}",
+        'template' => "{items}{pager}\n{extendedSummary}",
         'columns' => array(
+            'data_vencimento',
             'descricao',
             array(
-                'name'=>'categoria_id',
-                'value'=>'GxHtml::valueEx($data->categoria)',
-                'filter'=>Categoria::getCategoriaOptions(),
-            ),
-            array(
-                'name' => 'tipo',
-                'value' => '$data->tipotext',
-                'filter' => $model->tipooptions,
+                'name' => 'valor',
+                'htmlOptions'=> array('class' => 'text-right',),
+                'cssClassExpression'=> function($row, $data) {
+                    // switch($data->project_req_status) {
+                    switch(GxHtml::valueEx($data,'tipo')) {
+                        case Lancamento::TIPO_DESPESA:
+                            return 'texto-despesa bold';
+                        case Lancamento::TIPO_RECEITA:
+                            return 'texto-receita bold';
+                        default:
+                        return '';
+                    } 
+                },
+                'footer' => $model->getTotalLancamentos(),
             ),
             array(
                 'name' => 'status',
-                'value' => '$data->statustext',
+                'value' => '$data->statuslabeltext',
                 'filter' => $model->statusoptions,
-            ),
-            
-            /*
-            'data_vencimento',
-            'data_pagamento',
-            'data_cadastro',
-            'data_alteracao',
-            'valor',
-            'valor_pago',
-            array(
-                    'name'=>'usuario_id',
-                    'value'=>'GxHtml::valueEx($data->usuario)',
-                    'filter'=>GxHtml::listDataEx(Usuario::model()->findAllAttributes(null, true)),
-                    ),
-            */
+                'type' => 'html',
+                'htmlOptions' => array('class' => 'text-center','width' => '10%'),
+            ),           
             array(
                 'class' => 'TbButtonColumn',
-                'template' => "{view} | {update} | {delete}",
+                'template' => "{view}  {update}  {delete}",
+                //'htmlOptions' => array('style' => 'width:17%'),
                 'buttons' => array(
                     'view' => array(
-                        'label' => '<i class="fa fa-eye"></i>',
+                        'label' => '<i class="fa fa-search"></i>',
+                        'options' => array('title' => 'Visualizar'),
                         'imageUrl' => false,
                         'icon' =>false,
                     ),
                     'update' => array(
                         'label' => '<i class="fa fa-pencil"></i>',
+                        'options' => array('title' => 'Editar'),
                         'icon' => false,
                         'imageUrl' => false,
                     ),
                     'delete' => array(
                         'label' => '<i class="fa fa-trash-o"></i>',
+                        'options' => array( 'title' => 'Excluir'),
                         'icon' => false,
                         'imageUrl' => false,
                     )
                 )
             ),
         ),
+        'pager' => array(
+            'class' => 'bootstrap.widgets.TbPager',
+            'htmlOptions' => array(
+                'listOptions' => array(
+                    'class' =>'pagination',
+                ),
+            )
+        )
     )); ?>
     </div>
 </div>

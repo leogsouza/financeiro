@@ -41,8 +41,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model, 'data_pagamento'); ?>
-		<?php echo $form->textField($model, 'data_pagamento'); ?>
+		<?php echo $form->label($model, 'data_operacao'); ?>
+		<?php echo $form->textField($model, 'data_operacao'); ?>
 	</div>
 
 	<div class="row">
@@ -61,8 +61,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model, 'valor_pago'); ?>
-		<?php echo $form->textField($model, 'valor_pago', array('maxlength' => 15)); ?>
+		<?php echo $form->label($model, 'valor_operacao'); ?>
+		<?php echo $form->textField($model, 'valor_operacao', array('maxlength' => 15)); ?>
 	</div>
 
 	<div class="row">

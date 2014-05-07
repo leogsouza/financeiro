@@ -12,7 +12,7 @@ $this->pageTitle = Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label())
     <div class="col-md-12 margin-bottom-10">
         <?php echo TbHtml::buttonGroup(array(
             array(
-                'label' => '<i class="fa fa-repeat"></i> '.
+                'label' => '<i class="fa fa-refresh"></i> '.
                     Yii::t('app', 'Update') . ' ' . $model->label(), 
                 'url' => array(
                     'update','id' =>$model->id
@@ -61,11 +61,11 @@ $this->pageTitle = Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label())
             'value' => $model->statustext,
         ),
         'data_vencimento',
-        'data_pagamento',
+        'data_operacao',
         'data_cadastro',
         'data_alteracao',
         'valor',
-        'valor_pago',
+        'valor_operacao',
         array(
 			'name' => 'usuario',
 			'type' => 'raw',

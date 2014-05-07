@@ -1,5 +1,3 @@
-
-
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
@@ -9,7 +7,7 @@
     <div class="portlet-body form">
         
         <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-            'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+            'htmlOptions' => array('class' => 'form-horizontal'),
         ));
         ?>
             <div class="form-body">
@@ -47,7 +45,7 @@
                             $model->getTipoOptions(),
                             array(
                                 'class' => 'form-control',
-                                'container' => 'div',
+                                //'container' => 'div',
                                 'containerOptions' => array(
                                     'class' => 'radio-list',
                                 ),
@@ -84,11 +82,11 @@
                     </div>
                 </div><!-- row -->
                 <div class="form-group">
-                    <?php echo $form->labelEx($model,'data_pagamento',array('class' => 'control-label col-md-3')); ?>
+                    <?php echo $form->labelEx($model,'data_operacao',array('class' => 'control-label col-md-3')); ?>
                     <div class="col-md-4">
                         <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
                                 'model' => $model,
-                                'attribute' => 'data_pagamento',
+                                'attribute' => 'data_operacao',
                                 'pluginOptions' => array(
                                     'format' => 'dd/mm/yyyy',
                                     'language' =>'pt-BR',
@@ -96,7 +94,7 @@
                                 'htmlOptions' => array('class' => 'form-control')
                             ));
                         ?>
-                        <?php echo $form->error($model,'data_pagamento'); ?>
+                        <?php echo $form->error($model,'data_operacao'); ?>
                     </div>
                 </div><!-- row -->		
 		
@@ -117,11 +115,11 @@
                     </div>
                 </div><!-- row -->
                 <div class="form-group">
-                    <?php echo $form->labelEx($model,'valor_pago',array('class' => 'control-label col-md-3')); ?>
+                    <?php echo $form->labelEx($model,'valor_operacao',array('class' => 'control-label col-md-3')); ?>
                     <div class="col-md-4">
                         <?php $this->widget('yiiwheels.widgets.maskmoney.WhMaskMoney', array(
                             'model' => $model,
-                            'attribute' => 'valor_pago',
+                            'attribute' => 'valor_operacao',
                             'pluginOptions' => array(
                                 'thousands' =>'.',
                                 'decimal' => ',',
@@ -129,16 +127,30 @@
                             ),
                             'htmlOptions' => array('class' => 'form-control')
                         ));?>
-                        <?php echo $form->error($model,'valor_pago'); ?>
+                        <?php echo $form->error($model,'valor_operacao'); ?>
                     </div>
                 </div><!-- row -->
             </div>
             <?php echo TbHtml::formActions(array(
                 TbHtml::submitButton('<i class="fa fa-save"></i> Salvar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-                TbHtml::link('Cancel',array('admin'),array('class' => 'btn default','color' => TbHtml::BUTTON_COLOR_DEFAULT)),
+                TbHtml::link('Cancelar',array('admin'),array('class' => 'btn default','color' => TbHtml::BUTTON_COLOR_DEFAULT)),
             ),array('class' => 'nobg')); ?>
         <?php
         $this->endWidget();
         ?>
     </div>
 </div>
+<script>
+
+
+$("input[name='<?php echo CHtml::activeName($model, 'tipo');?>']").on('change',function(){
+    if($(this).val() == <?php echo Lancamento::TIPO_DESPESA ?>) {
+        $("label[for='<?php echo CHtml::activeId($model, 'data_operacao')?>']").text('Data de Pagamento');
+        $("label[for='<?php echo CHtml::activeId($model, 'valor_operacao')?>']").text('Valor Pago');
+    } else {
+        $("label[for='<?php echo CHtml::activeId($model, 'data_operacao')?>']").text('Data de Recebimento');
+        $("label[for='<?php echo CHtml::activeId($model, 'valor_operacao')?>']").text('Valor Recebido');
+    }
+   
+});
+</script>
