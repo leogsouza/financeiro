@@ -25,6 +25,7 @@ return array(
         'bootstrap.helpers.TbArray',
         'bootstrap.widgets.*',
         'bootstrap.behaviors.TbWidget',
+        'ext.EDataTables.*',
 	),
     'modules'=>require(dirname(__FILE__).'/modules.php'),
     

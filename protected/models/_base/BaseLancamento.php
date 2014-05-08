@@ -16,15 +16,15 @@
  * @property integer $tipo
  * @property integer $status
  * @property string $data_vencimento
- * @property string $data_pagamento
+ * @property string $data_operacao
  * @property string $data_cadastro
  * @property string $data_alteracao
  * @property string $valor
- * @property string $valor_pago
+ * @property string $valor_operacao
  * @property integer $usuario_id
  *
- * @property Usuario $usuario
  * @property Categoria $categoria
+ * @property Usuario $usuario
  */
 abstract class BaseLancamento extends GxActiveRecord 
 {
@@ -56,18 +56,18 @@ abstract class BaseLancamento extends GxActiveRecord
 			array('categoria_id, tipo, status, usuario_id', 'numerical', 'integerOnly'=>true),
 			array('descricao', 'length', 'max'=>255),
 			array('documento', 'length', 'max'=>20),
-			//array('valor, valor_pago', 'length', 'max'=>15),
-			array('data_vencimento, data_pagamento, data_cadastro, data_alteracao', 'safe'),
-			array('documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, descricao, documento, categoria_id, tipo, status, data_vencimento, data_pagamento, data_cadastro, data_alteracao, valor, valor_pago, usuario_id', 'safe', 'on'=>'search'),
+			array('valor, valor_operacao', 'length', 'max'=>15),
+			array('data_vencimento, data_operacao, data_cadastro, data_alteracao', 'safe'),
+			array('documento, categoria_id, tipo, status, data_vencimento, data_operacao, data_cadastro, data_alteracao, valor, valor_operacao', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, descricao, documento, categoria_id, tipo, status, data_vencimento, data_operacao, data_cadastro, data_alteracao, valor, valor_operacao, usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations() 
     {
 		return array(
-			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_id'),
 			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categoria_id'),
+			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_id'),
 		);
 	}
 
@@ -86,15 +86,15 @@ abstract class BaseLancamento extends GxActiveRecord
 			'categoria_id' => null,
 			'tipo' => Yii::t('app', 'Tipo'),
 			'status' => Yii::t('app', 'Status'),
-			'data_vencimento' => Yii::t('app', 'Data Vencimento'),
-			'data_pagamento' => Yii::t('app', 'Data Pagamento'),
+			'data_vencimento' => Yii::t('app', 'Data de Vencimento'),
+			'data_operacao' => empty($this->tipo) ? Yii::t('app', 'Data de Pagamento'): Yii::t('app', 'Data de Recebimento') ,
 			'data_cadastro' => Yii::t('app', 'Data Cadastro'),
-			'data_alteracao' => Yii::t('app', 'Data Alteração'),
+			'data_alteracao' => Yii::t('app', 'Data Alteracao'),
 			'valor' => Yii::t('app', 'Valor'),
-			'valor_pago' => Yii::t('app', 'Valor Pago'),
+			'valor_operacao' => empty($this->tipo) ?Yii::t('app', 'Valor Pago') : Yii::t('app','Valor Recebido'),
 			'usuario_id' => null,
-			'usuario' => null,
 			'categoria' => null,
+			'usuario' => null,
 		);
 	}
 
@@ -109,11 +109,11 @@ abstract class BaseLancamento extends GxActiveRecord
 		$criteria->compare('tipo', $this->tipo);
 		$criteria->compare('status', $this->status);
 		$criteria->compare('data_vencimento', $this->data_vencimento, true);
-		$criteria->compare('data_pagamento', $this->data_pagamento, true);
+		$criteria->compare('data_operacao', $this->data_operacao, true);
 		$criteria->compare('data_cadastro', $this->data_cadastro, true);
 		$criteria->compare('data_alteracao', $this->data_alteracao, true);
 		$criteria->compare('valor', $this->valor, true);
-		$criteria->compare('valor_pago', $this->valor_pago, true);
+		$criteria->compare('valor_operacao', $this->valor_operacao, true);
 		$criteria->compare('usuario_id', $this->usuario_id);
 
 		return new CActiveDataProvider($this, array(

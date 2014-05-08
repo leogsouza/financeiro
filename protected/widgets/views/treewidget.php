@@ -13,8 +13,9 @@
   * @version 1.0.0
   */
   -->
+  <div class="row">
 <div class="col-md-12">
-    <div class="row well">
+    
         <ul>
             <li>
                 Se a árvore de categoria estiver vazia, 
@@ -33,13 +34,14 @@
                 por id.
             </li>
         </ul>
-    </div>
-    <div class="row">
+        
+    
         <button id="reload" value="" class="btn btn-large">Atualizar</button>
         <button  id="add_root" type="button" value="" class="btn btn-large">Criar Nó Raiz</button>
-    </div>
-    <div class="row">
+    
+    
         <!--The tree will be rendered in this div-->
         <div class="well" style="margin-top: 20px" class="row" id="<?php echo $this->jstree_container_ID;?>"></div>
-    </div>
+    
+</div>
 </div>

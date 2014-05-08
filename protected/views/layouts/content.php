@@ -12,7 +12,7 @@
                 <?php if(isset($this->breadcrumbs)):?>
                     <?php $this->widget('bootstrap.widgets.TbBreadcrumb', array(
                         'links'=>$this->breadcrumbs,
-                        'divider' => '>',
+                        'divider' => '<i class="fa fa-angle-right"></i>',
                         'homeLabel' => '<i class="fa fa-home"></i> Home',
                         'htmlOptions' => array('class' => 'page-breadcrumb breadcrumb'),
                         'encodeLabel' => false,

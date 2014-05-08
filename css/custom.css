@@ -3,3 +3,16 @@
   padding: 0 5px;
   color: #ccc;
 }
+
+.texto-receita {
+	color: #0044cc;
+}
+
+.texto-despesa {
+	color: #e02222;
+}
+
+.pagination ul {
+	display: inline-block;
+	padding-left: 0
+}

@@ -11,6 +11,10 @@ class Lancamento extends BaseLancamento
     const TIPO_DESPESA = 0;
     const TIPO_RECEITA = 1;
     
+    public $totalReceita;
+    public $totalDespesa;
+    public $totalSaldo;
+    
 	public static function model($className=__CLASS__) 
     {
 		return parent::model($className);
@@ -35,9 +39,13 @@ class Lancamento extends BaseLancamento
                 'class' => 'ext.behaviors.DecimalI18NBehavior',
                 'format'=>'db',  // use DB format by default
                 'formats'=> array(
-                    'someCol'=>'#0.0', // specific format for someCol
+                    'valor'=>'R$ #,##0.00', // specific format for someCol
+                    'valor_operacao' => 'R$ #,##0.00',
+                    'totalReceita' => 'R$ #,##0.00',
+                    'totalDespesa' => 'R$ #,##0.00',
+                    'totalSaldo' => 'R$ #,##0.00',
                 ),
-                'parseExpression'=> "strtr(\$value, ',' , '.' )",
+                'parseExpression'=> "trim(strtr(\$value, array('.'=>'', ',' => '.','R$' => '')))",
             )
         );
     }
@@ -69,6 +77,24 @@ class Lancamento extends BaseLancamento
         return isset($options[$this->status]) ? $options[$this->status] : '';
     }
     
+    public function getStatusLabelText()
+    {
+        if($this->status == self::STATUS_PAGO) {
+            return '<span class="label label-success">Pago</span>';
+        } elseif($this->status == self::STATUS_CANCELADO) {
+            return '<span class="label label-default">Cancelado</span>';
+        } elseif($this->getDateDb('data_vencimento') < date("Y-m-d")) {
+            return '<span class="label label-danger">Vencido</span>';
+        } else {
+            return '<span class="label label-warning">Pendente</span>';
+        }
+    }
+    
+    public function getDateDb($field)
+    {
+        return date($this->dateOutcomeFormat, CDateTimeParser::parse($this->$field, Yii::app()->locale->dateFormat));
+    }
+    
     public function getTipoOptions()
     {
         return array(
@@ -82,6 +108,20 @@ class Lancamento extends BaseLancamento
         $options = $this->getTipoOptions();
         
         return isset($options[$this->tipo]) ? $options[$this->tipo] : '';
+    }
+    
+    public function getTotalLancamentos()
+    {
+        $criteria = $this->search()->criteria;
+        
+        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS totalReceita,'
+            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS totalDespesa,'
+            . '(@receita-@despesa) AS totalSaldo';
+        
+        $result = $this->find($criteria);
+        
+        return number_format($result->totalSaldo, 2, ',', '.');
+        
     }
     
 }
