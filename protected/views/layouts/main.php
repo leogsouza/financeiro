@@ -539,8 +539,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
-            <?php $this->widget('application.widgets.SidebarWidget');
-            ; ?>
+            <?php $this->widget('application.widgets.SidebarWidget'); ?>
+            
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
 <?php echo $content; ?>

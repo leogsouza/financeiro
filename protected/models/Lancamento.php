@@ -11,9 +11,15 @@ class Lancamento extends BaseLancamento
     const TIPO_DESPESA = 0;
     const TIPO_RECEITA = 1;
     
+    public $receita;
+    public $despesa;
+    public $saldo;
+    public $periodo;
+    public $quantidade;
+    public $totalSaldo;
     public $totalReceita;
     public $totalDespesa;
-    public $totalSaldo;
+    
     
 	public static function model($className=__CLASS__) 
     {
