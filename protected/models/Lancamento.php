@@ -126,8 +126,7 @@ class Lancamento extends BaseLancamento
         
         $result = $this->find($criteria);
         
-        return number_format($result->saldo, 2, ',', '.');
-        
+        return number_format($result->saldo, 2, ',', '.');        
     }
     
     public function getTotalReceita()
@@ -138,8 +137,7 @@ class Lancamento extends BaseLancamento
         
         $result = $this->find($criteria);
         
-        return number_format($result->receita, 2, ',', '.');
-        
+        return number_format($result->receita, 2, ',', '.');        
     }
     
     public function getTotalDespesa()
@@ -153,7 +151,6 @@ class Lancamento extends BaseLancamento
         $result = $this->find($criteria);
         
         return number_format($result->despesa, 2, ',', '.');
-        
     }
     
 }
