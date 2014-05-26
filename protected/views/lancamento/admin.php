@@ -69,7 +69,7 @@ $('.search-form form').submit(function(){
                         return '';
                     } 
                 },
-                'footer' => $model->getTotalLancamentos(),
+                'footer' => $model->getTotalSaldo(),
             ),
             array(
                 'name' => 'status',

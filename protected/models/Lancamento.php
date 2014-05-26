@@ -11,9 +11,15 @@ class Lancamento extends BaseLancamento
     const TIPO_DESPESA = 0;
     const TIPO_RECEITA = 1;
     
+    public $receita;
+    public $despesa;
+    public $saldo;
+    public $periodo;
+    public $quantidade;
+    public $totalSaldo;
     public $totalReceita;
     public $totalDespesa;
-    public $totalSaldo;
+    
     
 	public static function model($className=__CLASS__) 
     {
@@ -41,9 +47,9 @@ class Lancamento extends BaseLancamento
                 'formats'=> array(
                     'valor'=>'R$ #,##0.00', // specific format for someCol
                     'valor_operacao' => 'R$ #,##0.00',
-                    'totalReceita' => 'R$ #,##0.00',
-                    'totalDespesa' => 'R$ #,##0.00',
-                    'totalSaldo' => 'R$ #,##0.00',
+                    'receita' => 'R$ #,##0.00',
+                    'despesa' => 'R$ #,##0.00',
+                    'saldo' => 'R$ #,##0.00',
                 ),
                 'parseExpression'=> "trim(strtr(\$value, array('.'=>'', ',' => '.','R$' => '')))",
             )
@@ -110,17 +116,43 @@ class Lancamento extends BaseLancamento
         return isset($options[$this->tipo]) ? $options[$this->tipo] : '';
     }
     
-    public function getTotalLancamentos()
+    public function getTotalSaldo()
     {
         $criteria = $this->search()->criteria;
         
-        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS totalReceita,'
-            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS totalDespesa,'
-            . '(@receita-@despesa) AS totalSaldo';
+        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita,'
+            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
+            . '(@receita-@despesa) AS saldo';
         
         $result = $this->find($criteria);
         
-        return number_format($result->totalSaldo, 2, ',', '.');
+        return number_format($result->saldo, 2, ',', '.');
+        
+    }
+    
+    public function getTotalReceita()
+    {
+        $criteria = $this->search()->criteria;
+        
+        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita';
+        
+        $result = $this->find($criteria);
+        
+        return number_format($result->receita, 2, ',', '.');
+        
+    }
+    
+    public function getTotalDespesa()
+    {
+        $criteria = $this->search()->criteria;
+        
+        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita,'
+            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
+            . '(@receita-@despesa) AS saldo';
+        
+        $result = $this->find($criteria);
+        
+        return number_format($result->despesa, 2, ',', '.');
         
     }
     

@@ -16,3 +16,14 @@
 	display: inline-block;
 	padding-left: 0
 }
+.td-border-bottom {
+	border-top:0;
+	border-bottom: 1px solid #ddd;
+}
+
+.table.lancamentos>thead>tr>th, 
+.table.lancamentos>tbody>tr>th, 
+.table.lancamentos>tfoot>tr>th, 
+.table.lancamentos>thead>tr>td, .table.lancamentos>tbody>tr>td, .table.lancamentos>tfoot>tr>td {
+	border-top:0;
+}
