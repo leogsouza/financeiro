@@ -521,7 +521,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                             </li>
                             <li>
-                                <a href="login.html">
+                                <a href="<?php echo $this->createUrl('site/logout');?>">
                                     <i class="fa fa-key"></i> Log Out
                                 </a>
                             </li>
