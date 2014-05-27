@@ -10,7 +10,7 @@ return array(
 	'name'=>'Controle Financeiro Pessoal',
     
     'aliases' => array(
-        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+        'bootstrap' => realpath(__DIR__ . DIRECTORY_SEPARATOR. '..'.DIRECTORY_SEPARATOR.'extensions'.DIRECTORY_SEPARATOR.'bootstrap'), // change this if necessary
         'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
     ),
 	// preloading 'log' component
