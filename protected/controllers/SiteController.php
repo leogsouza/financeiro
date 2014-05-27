@@ -3,6 +3,31 @@
 class SiteController extends Controller
 {
     public $layout = '//layouts/content';
+    
+    public function filters() 
+    {
+        return array(
+            'accessControl', 
+        );
+    }
+
+    public function accessRules() 
+    {
+        return array(
+            array('allow',
+                'actions'=>array('login','contact','error','captcha','page'),
+                'users'=>array('*'),
+            ),
+            array('allow', 
+                'actions'=>array('logout', 'index'),
+                'users'=>array('@'),
+            ),
+            array('deny', 
+                'users'=>array('*'),
+            ),
+        );
+    }
+    
 	/**
 	 * Declares class-based actions.
 	 */
