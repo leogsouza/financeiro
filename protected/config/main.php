@@ -1,8 +1,7 @@
 <?php
 
 // uncomment the following to define a path alias
- Yii::setPathOfAlias('bootstrap',dirname(__FILE__) . '/../extensions/bootstrap');
- Yii::setPathOfAlias('yiiwheels',dirname(__FILE__) . '/../extensions/yiiwheels');
+// Yii::setPathOfAlias('local','path/to/local-folder');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -11,8 +10,8 @@ return array(
 	'name'=>'Controle Financeiro Pessoal',
     
     'aliases' => array(
-        'bootstrap' => dirname(__FILE__) . '/../extensions/bootstrap',//realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
-        'yiiwheels' => dirname(__FILE__) . '/../extensions/yiiwheels',//realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+        'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
     ),
 	// preloading 'log' component
 	'preload'=>array('log'),
