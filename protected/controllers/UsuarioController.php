@@ -3,6 +3,7 @@
 class UsuarioController extends GxController 
 {
     public $layout = '//layouts/content';
+    public $defaultAction = 'admin';
     public function filters() 
     {
         return array(
