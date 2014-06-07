@@ -35,7 +35,7 @@ $('.search-form form').submit(function(){
 
     
     </div>
-    <div class="col-md-8 margin-bottom-10">
+    <div class="col-md-12 margin-bottom-10">
     <?php // echo GxHtml::link(Yii::t('app', 'Advanced Search'), '#', array('class' => 'search-button')); ?>
    
     <div class="search-form" style="display: none">

@@ -16,7 +16,22 @@ class Usuario extends BaseUsuario
 
 	public function beforeSave()
     {
+        if($this->isNewRecord) {
+            $this->data_cadastro = $this->data_alteracao = date('d/m/Y H:i:s');
+            
+        } else {
+            $this->data_alteracao = date('d/m/Y H:i:s');
+        }
 		$this->password = CPasswordHelper::hashPassword($this->password); // lets hash that shiz
 		return parent::beforeSave();
 	}
+    
+    public function behaviors()
+    {
+        return array(
+            'datetimeI18NBehavior' => array(
+                'class' => 'ext.behaviors.DateTimeI18NBehavior'
+            ),
+        );
+    }
 }
