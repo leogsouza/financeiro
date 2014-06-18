@@ -12,12 +12,17 @@ $this->pageTitle = Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label())
     <div class="col-md-12 margin-bottom-10">
         <?php echo TbHtml::buttonGroup(array(
             array(
+                'label' => '<i class="fa fa-plus"></i> Inserir Lançamento', 
+                'url' => array('create'),    
+                'htmlOptions' =>array('class' => 'green')
+        ),
+            array(
                 'label' => '<i class="fa fa-refresh"></i> '.
                     Yii::t('app', 'Update') . ' ' . $model->label(), 
                 'url' => array(
                     'update','id' =>$model->id
                 ),
-                'htmlOptions' => array('class'=> 'green')
+                'htmlOptions' => array('class'=> 'blue')
             ),
             array(
                 'label' => '<i class="fa fa-trash-o"></i> '.
