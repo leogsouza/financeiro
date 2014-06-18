@@ -133,6 +133,7 @@
             </div>
             <?php echo TbHtml::formActions(array(
                 TbHtml::submitButton('<i class="fa fa-save"></i> Salvar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+                TbHtml::submitButton('<i class="fa fa-save"></i> Salvar e Continuar', array('name' =>'btnSaveContinue','color' => TbHtml::BUTTON_COLOR_PRIMARY)),
                 TbHtml::link('Cancelar',array('admin'),array('class' => 'btn default','color' => TbHtml::BUTTON_COLOR_DEFAULT)),
             ),array('class' => 'nobg')); ?>
         <?php

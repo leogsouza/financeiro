@@ -51,8 +51,18 @@ class LancamentoController extends GxController
             {
 				if (Yii::app()->getRequest()->getIsAjaxRequest())
 					Yii::app()->end();
-				else
-					$this->redirect(array('view', 'id' => $model->id));
+				else {
+                    
+                    if(isset($_POST['btnSaveContinue']))
+                    {
+                        $this->refresh();
+                    }
+                    else
+                    {
+                        $this->redirect(array('view', 'id' => $model->id));
+                    }
+                }
+					
 			}
 		}
 
