@@ -120,8 +120,8 @@ class Lancamento extends BaseLancamento
     {
         $criteria = $this->search()->criteria;
         
-        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita,'
-            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
+        $criteria->select = '@receita := (SELECT SUM(valor_operacao) FROM tbl_lancamento WHERE tipo =1) AS receita,'
+            . '@despesa := (SELECT SUM(valor_operacao) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
             . '(@receita-@despesa) AS saldo';
         
         $result = $this->find($criteria);
@@ -133,7 +133,7 @@ class Lancamento extends BaseLancamento
     {
         $criteria = $this->search()->criteria;
         
-        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita';
+        $criteria->select = '@receita := (SELECT SUM(valor_operacao) FROM tbl_lancamento WHERE tipo =1) AS receita';
         
         $result = $this->find($criteria);
         
@@ -144,8 +144,8 @@ class Lancamento extends BaseLancamento
     {
         $criteria = $this->search()->criteria;
         
-        $criteria->select = '@receita := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =1) AS receita,'
-            . '@despesa := (SELECT SUM(valor) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
+        $criteria->select = '@receita := (SELECT SUM(valor_operacao) FROM tbl_lancamento WHERE tipo =1) AS receita,'
+            . '@despesa := (SELECT SUM(valor_operacao) FROM tbl_lancamento WHERE tipo =0) AS despesa,'
             . '(@receita-@despesa) AS saldo';
         
         $result = $this->find($criteria);
