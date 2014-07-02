@@ -116,7 +116,7 @@ abstract class BaseLancamento extends GxActiveRecord
 		$criteria->compare('valor_operacao', $this->valor_operacao, true);
 		$criteria->compare('usuario_id', $this->usuario_id);
         
-        $criteria->order = 'data_operacao, data_vencimento,data_cadastro';
+        //$criteria->order = 'data_operacao, data_vencimento,data_cadastro';
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,
 		));
